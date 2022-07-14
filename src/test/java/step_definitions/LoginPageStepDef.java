@@ -6,10 +6,11 @@ import utilities.ConfigurationReader;
 
 import static utilities.Driver.getDriver;
 
-public class LoginStepDef {
-    LoginVytruckPage loginVytruckPage = new LoginVytruckPage();
+public class LoginPageStepDef {
+
     @Given("user with {string} and {string} is on Home page")
     public void userWithAndIsOnHomePage(String userName, String password) {
+        LoginVytruckPage loginVytruckPage = new LoginVytruckPage();
         getDriver().get(ConfigurationReader.getProperty("env"));
         loginVytruckPage.username.sendKeys(userName);
         loginVytruckPage.password.sendKeys(password);

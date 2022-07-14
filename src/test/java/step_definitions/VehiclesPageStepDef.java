@@ -1,28 +1,22 @@
 package step_definitions;
 
-
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import org.bouncycastle.LICENSE;
 import org.junit.Assert;
-import org.openqa.selenium.interactions.Actions;
-import pages.BasePage;
-import pages.LoginVytruckPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pages.VehiclesPage;
-import utilities.ConfigurationReader;
+import utilities.BrowserUtils;
+import utilities.Driver;
 
-import static utilities.Driver.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class ExportGrid_Refresh_Reset_Step_Def {
 
-    LoginVytruckPage loginVytruckPage = new LoginVytruckPage();
-    BasePage basePage = new BasePage();
+public class VehiclesPageStepDef {
+
     VehiclesPage vehiclesPage = new VehiclesPage();
-
-
-
-
-
 
     @Then("user should be able to click Export Grid dropdown")
     public void user_should_be_able_to_click_export_grid_dropdown() {
@@ -72,6 +66,15 @@ public class ExportGrid_Refresh_Reset_Step_Def {
     }
 
 
+    @Then("user should see all vehicle information")
+    public void userShouldSeeAllVehicleInformation() throws InterruptedException {
+        Thread.sleep(2000);
+        List<WebElement> listOfCarInfo = Driver.getDriver().findElements(By.xpath("//span[@class='grid-header-cell__label']"));
 
-
+        String[] actualList =BrowserUtils.convertListOfWebElementsToListOfStrings(listOfCarInfo);
+        Thread.sleep(2000);
+        String[] expectedList = {"LICENSE PLATE", "TAGS", "DRIVER", "LOCATION", "CHASSIS NUMBER", "MODEL YEAR","LAST ODOMETER", "IMMATRICULATION DATE", "FIRST CONTRACT DATE", "CVVI", "SEATS NUMBER", "DOORS NUMBER", "COLOR", "TRANSMISSION", "FUEL TYPE", "CO2 EMISSIONS", "HORSEPOWER", "HORSEPOWER TAXATION", "POWER (KW)"};
+       Assert.assertArrayEquals("Not all car info is displayed",expectedList,actualList);
+        System.out.println(actualList);
+    }
 }

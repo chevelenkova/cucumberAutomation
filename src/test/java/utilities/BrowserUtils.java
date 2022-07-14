@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class BrowserUtils {
@@ -30,5 +32,14 @@ public class BrowserUtils {
     public static void waitForInvisibility(WebElement element){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
         wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public static String[] convertListOfWebElementsToListOfStrings(List<WebElement> webElementList){
+        String [] listOfStrings = new String[webElementList.size()];
+        for(int i=0;i<webElementList.size();i++){
+           listOfStrings[i] = webElementList.get(i).getText();
+        }
+        return listOfStrings;
+
     }
 }
