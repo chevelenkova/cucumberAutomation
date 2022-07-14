@@ -6,37 +6,23 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.LoginVytruckPage;
 import pages.VehiclesPage;
 import utilities.ConfigurationReader;
-import utilities.Driver;
 
 import static utilities.Driver.*;
 
-public class USExtra_ExportGrid_Refresh_Reset {
+public class ExportGrid_Refresh_Reset_Step_Def {
 
     LoginVytruckPage loginVytruckPage = new LoginVytruckPage();
     BasePage basePage = new BasePage();
     VehiclesPage vehiclesPage = new VehiclesPage();
 
 
-    @Given("user with {string} and {string} is on Home page")
-    public void userWithAndIsOnHomePage(String userName, String password) {
-        getDriver().get(ConfigurationReader.getProperty("env"));
-        loginVytruckPage.username.sendKeys(userName);
-        loginVytruckPage.password.sendKeys(password);
-        loginVytruckPage.submitBtn.click();
-    }
 
-    @When("user clicks on Vehicle under Fleet module")
-    public void user_clicks_on_vehicle_under_fleet_module() {
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(basePage.FleetModule).perform();
-        basePage.VehicleModule.click();
 
-    }
+
 
     @Then("user should be able to click Export Grid dropdown")
     public void user_should_be_able_to_click_export_grid_dropdown() {
