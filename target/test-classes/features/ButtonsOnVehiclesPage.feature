@@ -1,4 +1,4 @@
-@WIP
+
 Feature: Vehicles page buttons verification
   US:As a user when I am on Vytrack => Fleet => Vehicles,
   I should be able to see Export Grid dropdown, Refresh, Reset and Grid Settings Buttons
